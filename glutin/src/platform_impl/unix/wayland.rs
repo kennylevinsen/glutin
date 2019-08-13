@@ -3,7 +3,7 @@ use crate::api::egl::{
 };
 use crate::{
     ContextError, CreationError, GlAttributes, PixelFormat,
-    PixelFormatRequirements,
+    PixelFormatRequirements, Rect,
 };
 
 use crate::platform::unix::{EventLoopExtUnix, WindowExtUnix};
@@ -198,6 +198,14 @@ impl Context {
     #[inline]
     pub fn swap_buffers(&self) -> Result<(), ContextError> {
         (**self).swap_buffers()
+    }
+
+    #[inline]
+    pub fn swap_buffers_with_damage(
+        &self,
+        rects: &[Rect],
+    ) -> Result<(), ContextError> {
+        (**self).swap_buffers_with_damage(rects)
     }
 
     #[inline]
