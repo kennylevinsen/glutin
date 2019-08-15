@@ -697,7 +697,7 @@ impl Context {
                 self.display,
                 *surface,
                 ffirects.as_mut_ptr(),
-                ffirects.len() as ffi::egl::types::EGLint,
+                rects.len() as ffi::egl::types::EGLint,
             )
         };
 
