@@ -659,13 +659,18 @@ impl Context {
         rects: &[Rect],
     ) -> Result<(), ContextError> {
         let egl = EGL.as_ref().unwrap();
+
+        if !egl.SwapBuffersWithDamageKHR.is_loaded() {
+            return Err(ContextError::FunctionUnavailable);
+        }
+
         let surface = self.surface.as_ref().unwrap().lock();
         if *surface == ffi::egl::NO_SURFACE {
             return Err(ContextError::ContextLost);
         }
 
         let mut ffirects: Vec<ffi::egl::types::EGLint> =
-            Vec::with_capacity(rects.len());
+            Vec::with_capacity(rects.len() * 4);
 
         for rect in rects {
             ffirects.push(rect.x as ffi::egl::types::EGLint);
@@ -679,11 +684,11 @@ impl Context {
                 self.display,
                 *surface,
                 ffirects.as_mut_ptr(),
-                rects.len() as ffi::egl::types::EGLint,
+                ffirects.len() as ffi::egl::types::EGLint,
             )
         };
 
-        if ret == 0 {
+        if ret == ffi::egl::FALSE {
             match unsafe { egl.GetError() } as u32 {
                 ffi::egl::CONTEXT_LOST => {
                     return Err(ContextError::ContextLost)

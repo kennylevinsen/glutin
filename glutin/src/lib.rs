@@ -427,6 +427,7 @@ pub enum ContextError {
     OsError(String),
     IoError(io::Error),
     ContextLost,
+    FunctionUnavailable,
 }
 
 impl ContextError {
@@ -436,6 +437,7 @@ impl ContextError {
             ContextError::OsError(ref string) => string,
             ContextError::IoError(ref err) => err.description(),
             ContextError::ContextLost => "Context lost",
+            ContextError::FunctionUnavailable => "Function unavailable",
         }
     }
 }
