@@ -777,7 +777,7 @@ impl<S> Default for GlAttributes<S> {
 
 // Rectangles to submit as buffer damage.
 #[allow(dead_code)]
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct Rect {
     pub x: u32,
     pub y: u32,
