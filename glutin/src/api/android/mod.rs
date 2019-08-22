@@ -5,7 +5,7 @@ use crate::api::egl::{
 };
 use crate::CreationError::{self, OsError};
 use crate::{
-    Api, ContextError, GlAttributes, PixelFormat, PixelFormatRequirements, Rect
+    Api, ContextError, GlAttributes, PixelFormat, PixelFormatRequirements, Rect,
 };
 
 use glutin_egl_sys as ffi;

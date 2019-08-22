@@ -2,7 +2,7 @@
 
 use crate::{
     Api, ContextCurrentState, ContextError, CreationError, GlAttributes,
-    GlRequest, NotCurrent, PixelFormat, PixelFormatRequirements,
+    GlRequest, NotCurrent, PixelFormat, PixelFormatRequirements, Rect,
 };
 
 use crate::api::egl::{

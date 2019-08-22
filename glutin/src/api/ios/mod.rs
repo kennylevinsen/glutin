@@ -60,10 +60,10 @@
 //! Also note that app will not receive Destroyed event if suspended, it will be
 //! SIGKILL'ed
 
-use crate::os::ios::{WindowBuilderExt, WindowExt};
+use crate::platform::ios::{WindowBuilderExtIOS, WindowExtIOS};
 use crate::{
     Api, ContextError, CreationError, EventsLoop, GlAttributes, GlRequest,
-    PixelFormat, PixelFormatRequirements, Window, WindowBuilder,
+    PixelFormat, PixelFormatRequirements, Window, WindowBuilder, Rect,
 };
 
 use glutin_gles2_sys as ffi;

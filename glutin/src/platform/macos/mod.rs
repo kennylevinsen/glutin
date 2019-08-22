@@ -1,7 +1,7 @@
 #![cfg(target_os = "macos")]
 use crate::{
     ContextError, CreationError, GlAttributes, PixelFormat,
-    PixelFormatRequirements, Robustness,
+    PixelFormatRequirements, Robustness, Rect,
 };
 
 use cgl::{
